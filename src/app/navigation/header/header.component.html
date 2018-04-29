@@ -1,0 +1,29 @@
+<mat-toolbar color="primary" class="fixed-header">
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div routerLink="/welcome" class="pointer"><img fxHide.xs style="width: 30px" src="assets\icon-128x128.png"/>Valto</div>
+  <div
+    fxFlex
+    fxLayout
+    fxLayoutAlign="flex-end">
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <!--<li *ngIf="!(isAuthenticated$ | async)"><a name="login" routerLink="/login">-->
+
+      <!--</a></li>-->
+      <li fxHide.xs
+        class="pointer">
+        <a name="login" routerLink="/welcome">
+          Bejelentkezés
+        </a>
+      </li>
+      <li class="pointer">
+        <button mat-raised-button style="background-color:#3fb5a3" routerLink="/welcome">
+          Csatlakozz
+        </button>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>
