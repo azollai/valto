@@ -1,0 +1,17 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+.sidenav-content-margin{
+  @media screen and (max-width: 599px) {
+    padding-top:56px;
+    height: calc( 100vh - 56px );
+  }
+  padding-top:64px;
+  height: calc( 100vh - 64px );
+  overflow-y: auto;
+}

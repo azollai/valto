@@ -1,0 +1,10 @@
+<mat-nav-list>
+  <a mat-list-item routerLink="/welcome" (click)="onToggleSidenav()">
+    <mat-icon>face</mat-icon>
+    <span class="nav-caption">Bejelentkezés</span>
+  </a>
+  <a mat-list-item routerLink="/welcome" (click)="onToggleSidenav();logout()">
+    <mat-icon>eject</mat-icon>
+    <span class="nav-caption">Csatlakozz</span>
+  </a>
+</mat-nav-list>
