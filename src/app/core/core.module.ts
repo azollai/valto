@@ -7,6 +7,8 @@ import { SidenavListComponent } from '../navigation/sidenav-list/sidenav-list.co
 import { HeaderComponent } from '../navigation/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
     BrowserAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
+    AppRoutingModule,
 
     MatIconModule,
     MatButtonModule,
@@ -30,6 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   exports: [
     BrowserAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
+    AppRoutingModule,
 
     MatIconModule,
     MatButtonModule,
