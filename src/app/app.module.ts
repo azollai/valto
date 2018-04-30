@@ -10,6 +10,9 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './auth/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -18,8 +21,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'valto' }),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
-    AppRoutingModule,
     CoreModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
