@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
+import { NgxsModule } from '@ngxs/store';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,18 +27,20 @@ import { AppRoutingModule } from '../app-routing.module';
     FlexLayoutModule,
     FormsModule,
     AppRoutingModule,
+    NgxsModule.forRoot([]),
 
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule,
+    MatListModule
   ],
   exports: [
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
     AppRoutingModule,
+    NgxsModule,
 
     MatIconModule,
     MatButtonModule,
@@ -45,6 +50,8 @@ import { AppRoutingModule } from '../app-routing.module';
 
     [SidenavListComponent, HeaderComponent]
   ],
-  providers: []
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ]
 })
 export class CoreModule {}

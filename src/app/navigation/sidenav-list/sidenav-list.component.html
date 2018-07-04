@@ -3,8 +3,12 @@
     <mat-icon>face</mat-icon>
     <span class="nav-caption">Bejelentkezés</span>
   </a>
+  <a mat-list-item routerLink="/signup" (click)="onToggleSidenav()">
+    <mat-icon>eject</mat-icon>
+    <span class="nav-caption">Regisztráció</span>
+  </a>
   <a mat-list-item routerLink="/welcome" (click)="onToggleSidenav();logout()">
     <mat-icon>eject</mat-icon>
-    <span class="nav-caption">Csatlakozz</span>
+    <span class="nav-caption">Kijelentkezés</span>
   </a>
 </mat-nav-list>

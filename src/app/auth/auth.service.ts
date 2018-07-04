@@ -7,14 +7,14 @@ export class AuthService {
 
   }
 
-  signupUser(email: string, password: string) {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-            .catch(
-              error => console.log(error)
-            );
-  }
+  // signupUser(email: string, password: string) {
+  //   firebase.auth().createUserWithEmailAndPassword(email, password)
+  //           .catch(
+  //             error => console.log(error)
+  //           );
+  // }
 
-  socialLogin() {
+  socialSignup() {
     const provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
       console.log(result);
