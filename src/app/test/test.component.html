@@ -1,0 +1,8 @@
+<button mat-icon-button color="primary" (click)="gpsEmitter.next()">
+  <mat-icon aria-label="GPS icon">place</mat-icon>
+</button>
+<mat-form-field style="width: 400px;">
+  <input matInput placeholder="Tartozkódási hely" #placeInput [formControl]="searchControl">
+</mat-form-field>
+<app-place-search [searchElementRef]="searchElementRef" [searchControl]="searchControl"
+                  [gpsEmitter]="gpsEmitter"></app-place-search>

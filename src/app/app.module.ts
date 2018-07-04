@@ -7,22 +7,23 @@ import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
-import { AppRoutingModule } from './app-routing.module';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { LoginComponent } from './auth/login/login.component';
-import { FormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
+import { TestComponent } from './test/test.component';
+import { TestModule } from './test/test.module';
+import { FormControlErrorMessagesComponent } from './common/form-control-error-messages/form-control-error-messages.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'valto' }),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     CoreModule,
-    AuthModule
+    AuthModule,
+
+    // temp
+    TestModule
   ],
   providers: [],
   bootstrap: [AppComponent]

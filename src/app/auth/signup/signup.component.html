@@ -1,0 +1,171 @@
+<section class="signup-form">
+  <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()" fxLayoutAlign="center none" fxLayoutGap="10px">
+    <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="30px">
+      <button mat-button class="facebook-login" type="button" (click)="socialSignup()">
+        Regisztrálj Facebook fiókoddal
+      </button>
+      <div>Vagy a következő adatok kitöltésével!</div>
+    </div>
+    {{confirmPasswordControl.errors| json}}
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <!--Last name-->
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="Vezetéknév"
+              autocomplete='family-name'
+              formControlName="lastName"
+              name="lastName"
+              required>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="lastNameControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+          <!--First name-->
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              autocomplete='given-name'
+              formControlName="firstName"
+              placeholder="Keresztnév"
+              name="firstName"
+              required>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="firstNameControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <!--E-mail-->
+          <mat-form-field>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              autocomplete="email"
+              placeholder="E-mail"
+              name="email"
+              required>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="emailControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+          <!--Birth date-->
+          <mat-form-field>
+            <input matInput
+                   placeholder="Születési idő"
+                   [matDatepicker]="picker"
+                   [max]="maxDate"
+                   formControlName="birthDate"
+                   name="birthDate"
+                   required
+                   (focus)="picker.open()"
+                   (click)="picker.open()">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="birthDateControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <!--Password-->
+          <mat-form-field>
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              autocomplete="new-password"
+              placeholder="Jelszó"
+              name="password">
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="passwordControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+          <!--Confirm Password-->
+          <mat-form-field>
+            <input
+              type="password"
+              matInput
+              formControlName="confirmPassword"
+              autocomplete="new-password"
+              placeholder="Jelszó megerősítése"
+              name="confirmPassword"
+              required>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="confirmPasswordControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!--Graduation Level-->
+        <mat-form-field>
+          <mat-select placeholder="Legmagasabb végzettség"
+                      required
+                      formControlName="graduation"
+                      name="graduation">
+            <mat-option *ngFor="let level of levels" [value]="level.value">
+              {{ level.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-form-control-error-messages
+              [errorKeys]="graduationControl?.errors"></app-form-control-error-messages>
+          </mat-error>
+        </mat-form-field>
+        <!--Region-->
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <button mat-icon-button color="primary" type="button" (click)="gpsEmitter.next()">
+            <mat-icon aria-label="GPS icon">place</mat-icon>
+          </button>
+          <mat-form-field ngClass.gt-xs="gps-form-field">
+            <input matInput
+                   placeholder="Tartozkódási hely"
+                   name="gps"
+                   formControlName="search"
+                   required
+                   #placeInput>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="searchControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div class="app-place-search">
+        <app-place-search [searchElementRef]="searchElementRef" [searchControl]="searchControl"
+                          [gpsEmitter]="gpsEmitter" (centerChange)="centerChange($event)"></app-place-search>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <!--Terms and Conditions-->
+      <mat-checkbox name="agree" color="primary" formControlName="agree" required>
+        Elfogadom a Terms and Conditions
+      </mat-checkbox>
+      <mat-error *ngIf="agreeControl.hasError('required') && (!agreeControl.pristine || submitPressed)">El kell fogadnod
+        a Terms
+        and
+        Conditions
+      </mat-error>
+      <!--Submit-->
+      <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary"
+              (click)="submitPressed=true">
+        Regisztráció
+      </button>
+      <!--<ng-template #matSpinner>-->
+      <!--<mat-spinner></mat-spinner>-->
+      <!--</ng-template>-->
+    </div>
+  </form>
+</section>
