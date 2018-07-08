@@ -1,23 +1,59 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <form (ngSubmit)="onSignup(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="email">Mail</label>
-        <input type="email" id="email" name="email" ngModel class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          ngModel
-          class="form-control">
-      </div>
-      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign Up</button>
-      <label>Social Login</label>
-      <button class="btn btn-primary" type="button" (click)="socialLogin()">Sign Up</button>
-    </form>
-  </div>
-</div>
+<section class="login-form">
+  <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()" fxLayoutAlign="center none" fxLayoutGap="10px">
+    <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="30px">
+      <button mat-button class="facebook-login" type="button" (click)="socialSignin()">
+        Jelentkezz be Facebook fiókoddal
+      </button>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
 
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <!--E-mail-->
+          <mat-form-field>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              autocomplete="email"
+              placeholder="E-mail"
+              name="email"
+              required>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="emailControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <!--Password-->
+          <mat-form-field>
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              autocomplete="new-password"
+              placeholder="Jelszó"
+              name="password"
+              required>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="passwordControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+
+      <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary"
+              (click)="submitPressed=true">
+        Bejelentkezés
+      </button>
+      <!--<ng-template #matSpinner>-->
+      <!--<mat-spinner></mat-spinner>-->
+      <!--</ng-template>-->
+    </div>
+  </form>
+</section>

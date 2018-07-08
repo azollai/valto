@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
+import { Store } from '@ngxs/store';
+import * as authActions from './auth/auth.state';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +10,23 @@ import * as firebase from 'firebase';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  constructor(private router: Router,
+              private afAuth: AngularFireAuth,
+              private store: Store) {}
+
   ngOnInit() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyAeBhGFzs-5WC-9WU-Olmxi-seYLKvcMbQ',
-      authDomain: 'valto-214b6.firebaseapp.com',
-      databaseURL: 'https://valto-214b6.firebaseio.com',
-      projectId: 'valto-214b6',
-      storageBucket: 'valto-214b6.appspot.com',
-      messagingSenderId: '940441955516'
-    });
+    this.initAuthListener();
   }
 
+  initAuthListener() {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.store.dispatch(new authActions.SetUser(user));
+      } else {
+        this.store.dispatch([
+          new authActions.DeleteUser()
+        ]);
+      }
+    });
+  }
 }

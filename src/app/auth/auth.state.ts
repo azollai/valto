@@ -1,16 +1,13 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import * as firebase from 'firebase';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { FinishSignupModel, SignupModel } from './models/signup';
 import { LoginModel } from './models/login';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { fromPromise } from 'rxjs/observable/fromPromise';
-import {
-  FinishUserMetaModel,
-  SendFinishUserMetaModel,
-  SendUserMetaModel,
-  StartUserMetaModel
-} from './models/user-meta';
+import { SendFinishUserMetaModel, SendUserMetaModel, StartUserMetaModel } from './models/user-meta';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
+import * as firebase from 'firebase';
 
 export const START_LOADING = '[Auth] START_LOADING';
 export const STOP_LOADING = '[Auth] STOP_LOADING';
@@ -20,16 +17,13 @@ export const FINISH_SOCIAL_SIGNUP = '[Auth] FINISH_SOCIAL_SIGNUP';
 export const START_EMAIL_LOGIN = '[Auth] START_EMAIL_LOGIN';
 export const START_SOCIAL_LOGIN = '[Auth] START_SOCIAL_LOGIN';
 export const START_LOGOUT = '[Auth] START_LOGOUT';
-export const SET_AUTHENTICATED = '[Auth] SET_AUTHENTICATED';
-export const UNSET_AUTHENTICATED = '[Auth] UNSET_AUTHENTICATED';
-export const SET_TOKEN = '[Auth] SET_TOKEN';
-export const DELETE_TOKEN = '[Auth] DELETE_TOKEN';
+export const SET_USER = '[Auth] SET_USER';
+export const DELETE_USER = '[Auth] DELETE_USER';
 
 export interface AuthStateModel {
   isLoading: boolean;
   isAuthenticated: boolean;
-  token: string;
-  userId: string;
+  user: firebase.User | null;
 }
 
 export class StartLoading {
@@ -70,38 +64,32 @@ export class StartLogout {
   static readonly type = START_LOGOUT;
 }
 
-export class SetAuthenticated {
-  static readonly type = SET_AUTHENTICATED;
+export class SetUser {
+  static readonly type = SET_USER;
 
-  constructor(public payload: string) { }
+  constructor(public payload: firebase.User | null) { }
 }
 
-export class UnsetAuthenticated {
-  static readonly type = UNSET_AUTHENTICATED;
-}
-
-export class SetToken {
-  static readonly type = SET_TOKEN;
-
-  constructor(public payload: string) { }
-}
-
-export class DeleteToken {
-  static readonly type = DELETE_TOKEN;
+export class DeleteUser {
+  static readonly type = DELETE_USER;
 }
 
 @State<AuthStateModel>({
   name: 'auth',
   defaults: {
     isLoading: false,
-    isAuthenticated: false,
-    token: null,
-    userId: null
+    isAuthenticated: undefined,
+    user: null,
   }
 })
 export class AuthState {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private store: Store,
+              private afAuth: AngularFireAuth,
+              private db: AngularFirestore) {
+
+  }
 
   @Selector()
   static isLoading(state: AuthStateModel) {
@@ -113,17 +101,24 @@ export class AuthState {
     return state.isAuthenticated;
   }
 
-  @Action(SetToken)
-  setToken({ patchState }: StateContext<AuthStateModel>, { payload }: SetToken) {
+  @Action(SetUser)
+  setUser({ patchState }: StateContext<AuthStateModel>, { payload }: SetUser) {
     patchState({
-      token: payload
+      isAuthenticated: true,
+      user: payload
     });
   }
 
-  @Action(DeleteToken)
-  deleteToken({ patchState }: StateContext<AuthStateModel>) {
-    patchState({
-      token: null
+  @Action(DeleteUser)
+  deleteUser({ patchState }: StateContext<AuthStateModel>) {
+    this.afAuth.auth.signOut().then(() => {
+      patchState({
+        isAuthenticated: false,
+        user: null
+      });
+      this.router.navigate(['/']);
+    }, error => {
+      console.error(error);
     });
   }
 
@@ -141,35 +136,12 @@ export class AuthState {
     });
   }
 
-  @Action(SetAuthenticated)
-  setAuthenticated({ patchState }: StateContext<AuthStateModel>, { payload }: SetAuthenticated) {
-    patchState({
-      isAuthenticated: true,
-      userId: payload
-    });
-  }
-
-  @Action(UnsetAuthenticated)
-  unsetAuthenticated({ patchState }: StateContext<AuthStateModel>) {
-    patchState({
-      isAuthenticated: false
-    });
-  }
-
   @Action(StartEmailSignup)
   startEmailSignup({ dispatch }: StateContext<AuthStateModel>, { payload }: StartEmailSignup) {
     dispatch(new StartLoading());
-    return fromPromise(firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password))
-      .switchMap(() => {
-        return fromPromise(firebase.auth().currentUser.getIdToken());
-      })
-      .subscribe(token => {
-        const userId = firebase.auth().currentUser.uid;
-        dispatch([
-            new SetToken(token),
-            new SetAuthenticated(userId)
-          ]
-        );
+    return fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(payload.email, payload.password))
+      .subscribe((user: firebase.User | null) => {
+        console.log('mail signup', user);
         const userMeta: SendUserMetaModel = {
           birthDate: payload.birthDate.getTime(),
           firstName: payload.firstName,
@@ -177,36 +149,38 @@ export class AuthState {
           lastName: payload.lastName,
           location: payload.location
         };
-        firebase.database().ref('users/' + userId).set(userMeta)
-                .then(result => {
-                  console.log('db done', result);
-                  dispatch(new StopLoading());
-                })
-                .catch(error => {
-                  console.error('db error', error);
-                  dispatch(new StopLoading());
-                });
-      }, () => dispatch(new StopLoading()));
+        this.db.collection('users').doc(user.uid).set(userMeta)
+            .then(result => {
+              this.signIn(user);
+              console.log('db done', result);
+              dispatch(new StopLoading());
+            }, error => {
+              console.error('db error', error);
+              dispatch(new StopLoading());
+            });
+      }, error => {
+        dispatch(new StopLoading());
+        console.error(error);
+      });
   }
 
   @Action(StartSocialSignup)
   startSocialSignup({ dispatch }: StateContext<AuthStateModel>) {
     dispatch(new StartLoading());
     const provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider).then((result) => {
-      const userId = firebase.auth().currentUser.uid;
+    this.afAuth.auth.signInWithPopup(provider).then(result => {
       const userMeta: StartUserMetaModel = {
         firstName: result.additionalUserInfo.profile.first_name,
         lastName: result.additionalUserInfo.profile.last_name
       };
-      firebase.database().ref('users/' + userId).set(userMeta)
-              .then(() => {
-                console.log('db manipulated');
-              })
-              .catch(error => console.error('db error', error));
+      this.db.collection('users').doc(result.user.uid).set(userMeta)
+          .then(() => {
+            console.log('db manipulated');
+          })
+          .catch(error => console.error('db error', error));
       this.router.navigate(['finish-signup']);
       dispatch(new StopLoading());
-    }).catch((error) => {
+    }, error => {
       dispatch(new StopLoading());
       console.error(error);
     });
@@ -214,56 +188,68 @@ export class AuthState {
 
   @Action(FinishSocialSignup)
   finishSocialSignup({ dispatch }: StateContext<AuthStateModel>, { payload }: FinishSocialSignup) {
-    const userId = firebase.auth().currentUser.uid;
-    dispatch(new SetAuthenticated(userId));
     const userMeta: SendFinishUserMetaModel = {
       birthDate: payload.birthDate.getTime(),
       graduation: payload.graduation,
       location: payload.location
     };
-    firebase.database().ref('users/' + userId).update(userMeta)
-            .then(result => {
-              console.log('db manipulated');
-              dispatch(new StopLoading());
-            })
-            .catch(error => {
-              console.error('db error', error);
-              dispatch(new StopLoading());
-            });
+    const currentUser = this.afAuth.auth.currentUser;
+    this.db.collection('users').doc(currentUser.uid).update(userMeta)
+        .then(result => {
+          console.log('db manipulated', currentUser);
+          this.signIn(currentUser);
+          dispatch(new StopLoading());
+        }, error => {
+          console.error('db error', error);
+          dispatch(new StopLoading());
+        });
   }
 
   @Action(StartLogout)
   startLogout({ dispatch }: StateContext<AuthStateModel>) {
     dispatch(new StartLoading());
-    firebase.auth().signOut()
-            .then(() => {
-              dispatch([
-                new UnsetAuthenticated(),
-                new StopLoading()]);
-            });
+    this.afAuth.auth.signOut()
+        .then(() => {
+          dispatch([
+            new DeleteUser(),
+            new StopLoading()
+          ]);
+          this.router.navigate(['welcome']);
+        });
   }
 
   @Action(StartEmailLogin)
   startEmailLogin({ dispatch }: StateContext<AuthStateModel>, { payload }: StartEmailLogin) {
     dispatch(new StartLoading());
-    firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
-            .then(() => {
-              dispatch([
-                new StopLoading(),
-                new SetAuthenticated(firebase.auth().currentUser.uid)
-              ]);
-            })
-            .catch(error => {
-              dispatch(new StopLoading());
-            });
+    this.afAuth.auth.signInWithEmailAndPassword(payload.email, payload.password)
+        .then((user: firebase.User | null) => {
+          dispatch([
+            new StopLoading(),
+            new SetUser(user)
+          ]);
+          this.signIn(user);
+        }, error => {
+          console.error(error);
+          dispatch(new StopLoading());
+        });
   }
 
   @Action(StartSocialLogin)
   startSocialLogin({ dispatch }: StateContext<AuthStateModel>) {
     dispatch(new StartLoading());
     const provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-            .then(() => dispatch(new StopLoading()))
-            .catch(() => dispatch(new StopLoading()));
+    this.afAuth.auth.signInWithPopup(provider)
+        .then(response => {
+          dispatch([new StopLoading(), new SetUser(response.user)]);
+          this.signIn(response.user);
+        }, error => {
+          console.error(error);
+          dispatch(new StopLoading());
+        });
+  }
+
+  private signIn(user: firebase.User | null) {
+    this.store.dispatch(new SetUser(user));
+    this.router.navigate(['test']);
   }
 }
