@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { Select, Store } from '@ngxs/store';
+import * as authActions from '../auth.state';
+import { PasswordValidators } from 'ngx-validators';
 
 @Component({
   selector: 'app-login',
@@ -8,21 +11,43 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @Select() isLoading$: Observable<boolean>;
 
-  constructor(private authService: AuthService) { }
+  public form: FormGroup;
+  emailControl = new FormControl(null, [Validators.required, Validators.email]);
+  passwordControl = new FormControl(null, [
+    Validators.required,
+    Validators.minLength(6),
+    PasswordValidators.alphabeticalCharacterRule(1),
+    PasswordValidators.digitCharacterRule(1),
+    PasswordValidators.lowercaseCharacterRule(1),
+    PasswordValidators.uppercaseCharacterRule(1)]);
+
+  constructor(private store: Store) { }
 
   ngOnInit() {
+    this.initForm();
   }
 
-  onSignup(form: NgForm) {
-    // const email = form.value.email;
-    // const password = form.value.password;
-    // console.log(email, password);
-    // this.authService.signupUser(email, password);
+  initForm() {
+    this.form = new FormGroup({
+      email: this.emailControl,
+      password: this.passwordControl,
+    });
   }
 
-  socialLogin() {
-    // this.authService.socialLogin();
+  socialSignin() {
+    this.store.dispatch(new authActions.StartSocialLogin());
+  }
+
+  onSubmit(form: NgForm) {
+    if (this.form.valid) {
+      // console.log('FORM', this.form.value);
+      this.store.dispatch(new authActions.StartEmailLogin({
+        email: this.form.value.email,
+        password: this.form.value.password,
+      }));
+    }
   }
 
 }

@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 import { SidenavListComponent } from '../navigation/sidenav-list/sidenav-list.component';
@@ -12,6 +19,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { NgxsModule } from '@ngxs/store';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../auth/auth.interceptor';
+import { AuthGuard } from '../auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -33,7 +41,8 @@ import { AuthInterceptor } from '../auth/auth.interceptor';
     MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -47,6 +56,7 @@ import { AuthInterceptor } from '../auth/auth.interceptor';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
+    MatMenuModule,
 
     [SidenavListComponent, HeaderComponent]
   ],

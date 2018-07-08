@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { TestComponent } from './test/test.component';
 import { TestModule } from './test/test.module';
 import { FormControlErrorMessagesComponent } from './common/form-control-error-messages/form-control-error-messages.component';
+import { AngularFireModule } from 'angularfire2';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,10 @@ import { FormControlErrorMessagesComponent } from './common/form-control-error-m
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     CoreModule,
     AuthModule,
+    AngularFireModule.initializeApp(environment.firebase)
 
     // temp
-    TestModule
+    // TestModule
   ],
   providers: [],
   bootstrap: [AppComponent]

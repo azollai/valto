@@ -4,6 +4,7 @@ import { PlaceSearchModule } from '../common/place-search/place-search.module';
 import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { TestComponent } from './test.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TestRoutingModule } from './test-routing.module';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+
+    TestRoutingModule
   ],
   providers: []
 })

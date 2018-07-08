@@ -13,16 +13,25 @@
       <!--<li *ngIf="!(isAuthenticated$ | async)"><a name="login" routerLink="/login">-->
 
       <!--</a></li>-->
-      <li fxHide.xs
-        class="pointer">
+      <li *ngIf="!(isAuthenticated$ | async)" fxHide.xs
+          class="pointer">
         <a name="login" routerLink="/login">
           Bejelentkezés
         </a>
       </li>
-      <li class="pointer">
+      <li *ngIf="!(isAuthenticated$ | async)" class="pointer">
         <button mat-raised-button style="background-color:#3fb5a3" routerLink="/signup">
           Csatlakozz
         </button>
+      </li>
+      <li *ngIf="(isAuthenticated$ | async)" class="pointer">
+        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/test">Test</button>
+          <button mat-menu-item>Profile</button>
+          <button mat-menu-item>Settings</button>
+          <button mat-menu-item (click)="logout()">Log out</button>
+        </mat-menu>
       </li>
     </ul>
   </div>

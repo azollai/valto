@@ -1,4 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Select, Store } from '@ngxs/store';
+import * as authActions from '../../auth/auth.state';
+import { AuthState } from '../../auth/auth.state';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +10,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  @Select(AuthState.isAuthenticated) isAuthenticated$: Observable<boolean>;
   @Output() sidenavToggle = new EventEmitter<void>();
 
-  constructor() {
+  constructor(private store: Store) {
   }
 
   onToggleSidenav() {
@@ -16,7 +21,7 @@ export class HeaderComponent {
   }
 
   logout() {
-    // TODO
+    this.store.dispatch(new authActions.DeleteUser());
   }
 
 }
