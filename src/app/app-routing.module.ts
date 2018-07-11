@@ -5,7 +5,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { NoAuthGuard } from './auth/no-auth.guard';
 
 const routes: Routes = [
-  { path: '', component: WelcomeComponent },
+  { path: '', component: WelcomeComponent, canActivate: [NoAuthGuard] },
   { path: 'welcome', component: WelcomeComponent, canActivate: [NoAuthGuard] },
   { path: 'test', loadChildren: './test/test.module#TestModule', canLoad: [AuthGuard] },
   // { path: '**', pathMatch: 'full', component: PageNotFoundComponent }

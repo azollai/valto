@@ -1,0 +1,28 @@
+<div style="width: 400px">
+  <slideshow
+    #slideshow
+    [height]="'400px'"
+    [autoPlay]="false"
+    [showDots]="true"
+    [showArrows]="true"
+    [imageUrls]="urls">
+  </slideshow>
+</div>
+
+
+<button *ngFor="let url of urls;let i=index" (click)="slideshow.goToSlide(i);selectImage(i)">
+  {{i}}. Image
+</button>
+<input class="file-input" multiple type="file" (change)="fileChangeEvent($event)">
+<image-cropper
+  style="max-width: 200px"
+  [imageFileChanged]="imageChangedEvent"
+  [cropper]="cropper"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="1/1"
+  [resizeToWidth]="1024"
+  format="png"
+  (imageCropped)="imageCropped($event)"
+></image-cropper>
+
+<!--<img style="max-width: 200px;" [src]="croppedImage">-->
