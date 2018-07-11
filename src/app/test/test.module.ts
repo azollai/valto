@@ -13,9 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestRoutingModule } from './test-routing.module';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { SlideshowModule } from 'ng-simple-slideshow';
-import { ImageCropperModule } from '../common/upload-image/image-cropper/image-cropper.module';
+import { ImageCropperModule } from '../common/image-wrapper/image-cropper/image-cropper.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ImageWrapperModule } from '../common/upload-image/image-wrapper.module';
+import { ImageWrapperModule } from '../common/image-wrapper/image-wrapper.module';
 
 
 @NgModule({
