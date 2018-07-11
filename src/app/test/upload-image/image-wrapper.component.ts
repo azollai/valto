@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { defaultImage } from './default-image.config';
+import { defaultImage } from './default-image.const';
 
 @Component({
-  selector: 'upload-image',
-  templateUrl: './upload-image.component.html',
-  styleUrls: ['./upload-image.component.scss']
+  selector: 'app-image-wrapper',
+  templateUrl: './image-wrapper.component.html',
+  styleUrls: ['./image-wrapper.component.scss']
 })
-export class FileUploadComponent {
+export class ImageWrapperComponent {
   @Input() isForUpload = true;
   eventWithEveryFiles: any;
   imageChangedEvent: any;
