@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PlaceSearchModule } from '../common/place-search/place-search.module';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule
+} from '@angular/material';
 import { TestComponent } from './test.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestRoutingModule } from './test-routing.module';
@@ -10,12 +16,13 @@ import { FileUploadComponent } from './upload-image/upload-image.component';
 import { FormatFileSizePipe } from './upload-image/format-file-size.pipe';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { ImageCropperModule } from './upload-image/image-cropper/image-cropper.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
   declarations: [
     TestComponent,
-    //Image
+    // Image
     FileUploadComponent,
     FormatFileSizePipe
   ],
@@ -23,6 +30,7 @@ import { ImageCropperModule } from './upload-image/image-cropper/image-cropper.m
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
 
     PlaceSearchModule,
 
@@ -30,11 +38,12 @@ import { ImageCropperModule } from './upload-image/image-cropper/image-cropper.m
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatButtonToggleModule,
 
     TestRoutingModule,
 
     AngularFireStorageModule,
-    //Image
+    // Image
     ImageCropperModule,
     SlideshowModule
   ],

@@ -281,6 +281,7 @@ export class ImageCropperComponent implements OnChanges {
   }
 
   private checkCropperPosition(maintainSize = false) {
+    if (!this.cropper) {return;}
     if (this.cropper.x1 < 0) {
       this.cropper.x2 -= maintainSize ? this.cropper.x1 : 0;
       this.cropper.x1 = 0;

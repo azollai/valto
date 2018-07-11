@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { defaultImage } from './default-image.config';
 
 @Component({
   selector: 'upload-image',
@@ -8,9 +9,10 @@ import { AngularFirestore } from 'angularfire2/firestore';
   styleUrls: ['./upload-image.component.scss']
 })
 export class FileUploadComponent {
+  @Input() isForUpload = true;
   eventWithEveryFiles: any;
   imageChangedEvent: any;
-  urls = [''];
+  @Input() urls = [defaultImage];
   croppers = [];
   cropper: CropperPosition;
 
