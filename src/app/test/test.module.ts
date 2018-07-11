@@ -1,20 +1,32 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PlaceSearchModule } from '../common/place-search/place-search.module';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule
+} from '@angular/material';
 import { TestComponent } from './test.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestRoutingModule } from './test-routing.module';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { SlideshowModule } from 'ng-simple-slideshow';
+import { ImageCropperModule } from '../common/image-wrapper/image-cropper/image-cropper.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ImageWrapperModule } from '../common/image-wrapper/image-wrapper.module';
 
 
 @NgModule({
   declarations: [
-    TestComponent
+    TestComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
 
     PlaceSearchModule,
 
@@ -22,8 +34,12 @@ import { TestRoutingModule } from './test-routing.module';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatButtonToggleModule,
 
-    TestRoutingModule
+    TestRoutingModule,
+
+    AngularFireStorageModule,
+    ImageWrapperModule
   ],
   providers: []
 })
