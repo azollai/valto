@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
     PasswordValidators.alphabeticalCharacterRule(1),
     PasswordValidators.digitCharacterRule(1),
     PasswordValidators.lowercaseCharacterRule(1),
-    PasswordValidators.uppercaseCharacterRule(1)]);
+    PasswordValidators.uppercaseCharacterRule(1)
+  ]);
 
   constructor(private store: Store) { }
 
@@ -40,9 +41,8 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(new authActions.StartSocialLogin());
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     if (this.form.valid) {
-      // console.log('FORM', this.form.value);
       this.store.dispatch(new authActions.StartEmailLogin({
         email: this.form.value.email,
         password: this.form.value.password,

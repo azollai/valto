@@ -8,17 +8,9 @@ import { FormControl } from '@angular/forms';
 })
 export class TestComponent implements OnInit {
 
-  @ViewChild('placeInput')
-  public searchElementRef: ElementRef;
-  public searchControl: FormControl;
-
-  public gpsEmitter: EventEmitter<any>;
-
   constructor() { }
 
   ngOnInit() {
-    this.gpsEmitter = new EventEmitter<any>();
-    this.searchControl = new FormControl();
   }
 
 }
