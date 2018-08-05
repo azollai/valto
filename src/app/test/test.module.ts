@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { PlaceSearchModule } from '../common/place-search/place-search.module';
 import {
   MatButtonModule,
-  MatButtonToggleModule,
+  MatButtonToggleModule, MatCardModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule, MatStepperModule
 } from '@angular/material';
 import { TestComponent } from './test.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +16,8 @@ import { SlideshowModule } from 'ng-simple-slideshow';
 import { ImageCropperModule } from '../common/image-wrapper/image-cropper/image-cropper.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ImageWrapperModule } from '../common/image-wrapper/image-wrapper.module';
+import { ChipsSelectModule } from '../common/chips-select/chips-select.module';
+import { FormControlErrorMessagesModule } from '../common/form-control-error-messages/form-control-error-messages.module';
 
 
 @NgModule({
@@ -35,11 +37,16 @@ import { ImageWrapperModule } from '../common/image-wrapper/image-wrapper.module
     MatIconModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatStepperModule,
 
     TestRoutingModule,
 
     AngularFireStorageModule,
-    ImageWrapperModule
+    ImageWrapperModule,
+
+    MatCardModule,
+    ChipsSelectModule,
+    FormControlErrorMessagesModule
   ],
   providers: []
 })

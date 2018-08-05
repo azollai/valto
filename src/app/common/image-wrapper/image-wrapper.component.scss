@@ -1,3 +1,9 @@
 .file-input {
   visibility: hidden;
 }
+
+::ng-deep {
+  .arrow-container {
+    z-index: 0 !important;
+  }
+}

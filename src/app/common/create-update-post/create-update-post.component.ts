@@ -1,14 +1,14 @@
 import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LatLngLiteral } from '@agm/core';
-import { defaultImage } from '../common/image-wrapper/default-image.const';
+import { defaultImage } from '../image-wrapper/default-image.const';
 
 @Component({
   selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  templateUrl: './create-update-post.component.html',
+  styleUrls: ['./create-update-post.component.scss']
 })
-export class TestComponent implements OnInit {
+export class CreateUpdatePostComponent implements OnInit {
 
   public submitted = false;
   public urls = [defaultImage];
