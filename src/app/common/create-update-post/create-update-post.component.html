@@ -1,0 +1,70 @@
+<div style="min-height:100%" fxLayout="column" fxLayoutAlign="start center">
+  <mat-card class="example-card" fxFlexOffset="1em">
+    <mat-card-header>
+      <mat-card-title><h2>New post</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="imageFormGroup">
+          <ng-template matStepLabel>Kép feltöltés</ng-template>
+          <app-image-wrapper (fileChosen)="fileChosen()" [urls]="urls"></app-image-wrapper>
+          <mat-error *ngIf="imageErrorShown && imageControl?.errors">
+            Legalább egy kép feltöltése kötelező
+          </mat-error>
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <button mat-button matStepperNext (click)="imageErrorShown=true">Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="searchFormGroup">
+          <ng-template matStepLabel>Hely megadása</ng-template>
+          <mat-form-field ngClass.gt-xs="gps-form-field">
+            <input matInput
+                   placeholder="Hely megadása"
+                   name="gps"
+                   [formControl]="searchControl"
+                   required
+                   #placeInput>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="searchControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+          <div class="app-place-search">
+            <app-place-search [searchElementRef]="searchElementRef" [searchControl]="searchControl"
+                              [gpsEmitter]="gpsEmitter" (centerChange)="centerChange($event)"></app-place-search>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="detailsFormGroup">
+          <ng-template matStepLabel>Bejelentés leírása</ng-template>
+          <mat-form-field class="example-full-width">
+            <textarea matInput required placeholder="Leírás" [formControl]="detailsControl"></textarea>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="detailsControl?.errors">
+              </app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+
+        <mat-step [stepControl]="chipFormGroup">
+          <ng-template matStepLabel>Tagek megadása</ng-template>
+          <app-chips-select [allChips]="['Chip 1', 'Chip 2', 'Asd']" [chips]="chips" [chipControl]="chipControl"
+                            [submitted]="submitted"></app-chips-select>
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" (click)="onShare()">Share</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </mat-card-content>
+  </mat-card>
+</div>
