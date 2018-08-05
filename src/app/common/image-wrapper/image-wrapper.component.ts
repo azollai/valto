@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { defaultImage } from './default-image.const';
@@ -15,6 +15,7 @@ export class ImageWrapperComponent {
   @Input() urls = [defaultImage];
   croppers = [];
   cropper: CropperPosition;
+  @Output() fileChosen = new EventEmitter<void>();
 
   selectedImageIndex = 0;
 
@@ -31,6 +32,8 @@ export class ImageWrapperComponent {
     if (file.type.split('/')[0] !== 'image') {
       console.error('unsupported file type :( ');
       return;
+    } else {
+      this.fileChosen.emit();
     }
   }
 

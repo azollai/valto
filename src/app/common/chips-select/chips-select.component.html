@@ -1,0 +1,33 @@
+<mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList>
+    <mat-chip
+      *ngFor="let chip of chips"
+      [selectable]="false"
+      [removable]="true"
+      (removed)="remove(chip)">
+      {{chip}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <!--TODO: required is not working with the current Angular Material version. It was corrected on newer versions-->
+    <input
+      required
+      placeholder="Tagek megadása"
+      #chipInput
+      (blur)="chipInput.value=''"
+      [formControl]="chipControl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="false"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let chip of filteredChips | async" [value]="chip">
+      {{chip}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+<mat-error *ngIf="(chipControl.touched || submitted) && chipControl?.errors && chips.length === 0">
+  <app-form-control-error-messages
+    [errorKeys]="chipControl?.errors"></app-form-control-error-messages>
+</mat-error>
