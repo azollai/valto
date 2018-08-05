@@ -41,7 +41,9 @@
         <mat-step [stepControl]="detailsFormGroup">
           <ng-template matStepLabel>Bejelentés leírása</ng-template>
           <mat-form-field class="example-full-width">
-            <textarea matInput required placeholder="Leírás" [formControl]="detailsControl"></textarea>
+            <textarea matInput #details maxlength="150" rows="3" required placeholder="Leírás"
+                      [formControl]="detailsControl"></textarea>
+            <mat-hint align="end">{{details.value.length}} / 150</mat-hint>
             <mat-error>
               <app-form-control-error-messages
                 [errorKeys]="detailsControl?.errors">
