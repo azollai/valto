@@ -1,4 +1,4 @@
-<div style="min-height:100%" fxLayout="column" fxLayoutAlign="start center">
+<div fxLayout="column" fxLayoutAlign="start center">
   <mat-card class="example-card" fxFlexOffset="1em">
     <mat-card-header>
       <mat-card-title><h2>#{{card.tags}}</h2></mat-card-title>
@@ -8,11 +8,11 @@
       <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1em">
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <div>
-            <button mat-button>
+            <button mat-button (click)="onVote(true)">
               <mat-icon style="color:green">arrow_upward</mat-icon>
               {{card.upVote}}
             </button>
-            <button mat-button>
+            <button mat-button (click)="onVote(false)">
               <mat-icon style="color:red">arrow_downward</mat-icon>
               {{card.downVote}}
             </button>
