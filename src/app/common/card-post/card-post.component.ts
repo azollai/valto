@@ -14,8 +14,8 @@ export class CardPostComponent {
     ' page when looking at its layout.',
     downVote: 5,
     upVote: 104,
-    place: 'Rákospalota, Kolozsvár utca',
-    tags: ['kátyu'],
+    place: 'London, Gore Street 5',
+    tags: ['pothole'],
     urls: [defaultImage]
   };
 

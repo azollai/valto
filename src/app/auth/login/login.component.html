@@ -2,7 +2,7 @@
   <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()" fxLayoutAlign="center none" fxLayoutGap="10px">
     <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="30px">
       <button mat-button class="facebook-login" type="button" (click)="socialSignin()">
-        Jelentkezz be Facebook fiókoddal
+        Login with your Facebook account
       </button>
     </div>
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="10px">
@@ -32,7 +32,7 @@
               matInput
               formControlName="password"
               autocomplete="new-password"
-              placeholder="Jelszó"
+              placeholder="Password"
               name="password"
               required>
             <mat-error>
@@ -48,7 +48,7 @@
 
       <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary"
               (click)="submitPressed=true">
-        Bejelentkezés
+        Login
       </button>
       <!--<ng-template #matSpinner>-->
       <!--<mat-spinner></mat-spinner>-->

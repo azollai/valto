@@ -15,11 +15,18 @@ export class SignupComponent implements OnInit {
   maxDate = new Date(new Date().getFullYear() - 13, 1, 1);
   submitPressed: boolean;
   @Select() isLoading$: Observable<boolean>;
+  // levels = [
+  //   { name: 'Kevesebb, mint 8 általános', value: 0 },
+  //   { name: 'Általános iskola', value: 1 },
+  //   { name: 'Középiskola', value: 2 },
+  //   { name: 'Felső oktatás', value: 3 }
+  // ];
   levels = [
-    { name: 'Kevesebb, mint 8 általános', value: 0 },
-    { name: 'Általános iskola', value: 1 },
-    { name: 'Középiskola', value: 2 },
-    { name: 'Felső oktatás', value: 3 }
+    { name: 'Less than Primary School', value: 0 },
+    { name: 'Primary School', value: 1 },
+    { name: 'Secondary School', value: 2 },
+    { name: 'High School', value: 3 },
+    { name: 'Higher Education', value: 4 }
   ];
 
   @ViewChild('placeInput')

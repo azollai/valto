@@ -8,14 +8,13 @@ import { defaultImage } from '../common/image-wrapper/default-image.const';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent {
-
   @Input() card: CardPostModel = {
     description: 'It is a long established fact that a reader will be distracted by the readable content of a' +
     ' page when looking at its layout.',
     downVote: 5,
     upVote: 104,
-    place: 'Rákospalota, Kolozsvár utca',
-    tags: ['kátyu'],
+    place: 'London, Gore Street 5',
+    tags: ['pothole'],
     urls: [defaultImage]
   };
 
