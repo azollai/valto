@@ -16,12 +16,12 @@
       <li *ngIf="!(isAuthenticated$ | async)" fxHide.xs
           class="pointer">
         <a name="login" routerLink="/login">
-          Bejelentkezés
+          Login
         </a>
       </li>
       <li *ngIf="!(isAuthenticated$ | async)" class="pointer">
         <button mat-raised-button style="background-color:#3fb5a3" routerLink="/signup">
-          Csatlakozz
+          Join us
         </button>
       </li>
       <li *ngIf="(isAuthenticated$ | async)" class="pointer">

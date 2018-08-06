@@ -2,11 +2,10 @@
   <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()" fxLayoutAlign="center none" fxLayoutGap="10px">
     <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="30px">
       <button mat-button class="facebook-login" type="button" (click)="socialSignup()">
-        Regisztrálj Facebook fiókoddal
+        Register with your Facebook account
       </button>
-      <div>Vagy a következő adatok kitöltésével!</div>
+      <div>Or by filling the following form!</div>
     </div>
-    {{confirmPasswordControl.errors| json}}
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="10px">
       <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px">
@@ -15,7 +14,7 @@
             <input
               type="text"
               matInput
-              placeholder="Vezetéknév"
+              placeholder="Last Name"
               autocomplete='family-name'
               formControlName="lastName"
               name="lastName"
@@ -32,7 +31,7 @@
               matInput
               autocomplete='given-name'
               formControlName="firstName"
-              placeholder="Keresztnév"
+              placeholder="First Name"
               name="firstName"
               required>
             <mat-error>
@@ -60,7 +59,7 @@
           <!--Birth date-->
           <mat-form-field>
             <input matInput
-                   placeholder="Születési idő"
+                   placeholder="Birth date"
                    [matDatepicker]="picker"
                    [max]="maxDate"
                    formControlName="birthDate"
@@ -84,7 +83,7 @@
               matInput
               formControlName="password"
               autocomplete="new-password"
-              placeholder="Jelszó"
+              placeholder="Password"
               name="password">
             <mat-error>
               <app-form-control-error-messages
@@ -98,7 +97,7 @@
               matInput
               formControlName="confirmPassword"
               autocomplete="new-password"
-              placeholder="Jelszó megerősítése"
+              placeholder="Confirm password"
               name="confirmPassword"
               required>
             <mat-error>
@@ -109,7 +108,7 @@
         </div>
         <!--Graduation Level-->
         <mat-form-field>
-          <mat-select placeholder="Legmagasabb végzettség"
+          <mat-select placeholder="Highest degree"
                       required
                       formControlName="graduation"
                       name="graduation">
@@ -129,7 +128,7 @@
           </button>
           <mat-form-field ngClass.gt-xs="gps-form-field">
             <input matInput
-                   placeholder="Tartozkódási hely"
+                   placeholder="Place of residence"
                    name="gps"
                    formControlName="search"
                    required
@@ -151,9 +150,10 @@
     <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
       <!--Terms and Conditions-->
       <mat-checkbox name="agree" color="primary" formControlName="agree" required>
-        Elfogadom a Terms and Conditions
+        I accept the Terms and Conditions
       </mat-checkbox>
-      <mat-error *ngIf="agreeControl.hasError('required') && (!agreeControl.pristine || submitPressed)">El kell fogadnod
+      <mat-error *ngIf="agreeControl.hasError('required') && (!agreeControl.pristine || submitPressed)">You have to
+        accept
         a Terms
         and
         Conditions
@@ -161,7 +161,7 @@
       <!--Submit-->
       <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary"
               (click)="submitPressed=true">
-        Regisztráció
+        Register
       </button>
       <!--<ng-template #matSpinner>-->
       <!--<mat-spinner></mat-spinner>-->

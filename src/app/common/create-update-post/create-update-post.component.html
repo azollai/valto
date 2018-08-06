@@ -6,20 +6,20 @@
     <mat-card-content>
       <mat-horizontal-stepper [linear]="true" #stepper>
         <mat-step [stepControl]="imageFormGroup">
-          <ng-template matStepLabel>Kép feltöltés</ng-template>
+          <ng-template matStepLabel>Image upload</ng-template>
           <app-image-wrapper (fileChosen)="fileChosen()" [urls]="urls"></app-image-wrapper>
           <mat-error *ngIf="imageErrorShown && imageControl?.errors">
-            Legalább egy kép feltöltése kötelező
+            You have to upload at least one image
           </mat-error>
           <div fxLayout="row" fxLayoutAlign="end center">
             <button mat-button matStepperNext (click)="imageErrorShown=true">Next</button>
           </div>
         </mat-step>
         <mat-step [stepControl]="searchFormGroup">
-          <ng-template matStepLabel>Hely megadása</ng-template>
+          <ng-template matStepLabel>Location</ng-template>
           <mat-form-field ngClass.gt-xs="gps-form-field">
             <input matInput
-                   placeholder="Hely megadása"
+                   placeholder="Location"
                    name="gps"
                    [formControl]="searchControl"
                    required
@@ -39,7 +39,7 @@
           </div>
         </mat-step>
         <mat-step [stepControl]="detailsFormGroup">
-          <ng-template matStepLabel>Bejelentés leírása</ng-template>
+          <ng-template matStepLabel>Statement description</ng-template>
           <mat-form-field class="example-full-width">
             <textarea matInput #details maxlength="150" rows="3" required placeholder="Leírás"
                       [formControl]="detailsControl"></textarea>
