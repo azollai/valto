@@ -16,7 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormControlErrorMessagesModule } from '../form-control-error-messages/form-control-error-messages.module';
 import { ChipsSelectModule } from '../chips-select/chips-select.module';
 import { PlaceSearchModule } from '../place-search/place-search.module';
-import { ChipsSelectComponent } from '../chips-select/chips-select.component';
+import { ImageWrapperModule } from '../image-wrapper/image-wrapper.module';
 
 
 @NgModule({
@@ -40,7 +40,8 @@ import { ChipsSelectComponent } from '../chips-select/chips-select.component';
 
     PlaceSearchModule,
     ChipsSelectModule,
-    FormControlErrorMessagesModule
+    FormControlErrorMessagesModule,
+    ImageWrapperModule
   ],
   exports: [
     CreateUpdatePostComponent
