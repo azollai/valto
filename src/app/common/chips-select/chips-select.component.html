@@ -27,7 +27,7 @@
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
-<mat-error *ngIf="(chipControl.touched || submitted) && chipControl?.errors && chips.length === 0">
+<mat-error *ngIf="(chipControl.touched || submitted) && chipControl?.errors && chips.length === 0 && validationOn">
   <app-form-control-error-messages
     [errorKeys]="chipControl?.errors"></app-form-control-error-messages>
 </mat-error>
