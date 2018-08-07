@@ -20,6 +20,7 @@ export class ChipsSelectComponent implements OnInit {
   @Input() chips: string[] = [];
   @Input() allChips: string[] = ['Tag 1', 'Tag 2,', 'Other'];
   @Input() submitted = false;
+  @Input() validationOn = true;
 
   @ViewChild('chipInput') chipInput: ElementRef;
 

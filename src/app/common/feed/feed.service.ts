@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CardPostModel } from '../common/card-post/card-post.model';
-import {
-  defaultImage2,
-  defaultImage3,
-  defaultImage4,
-  defaultImage5
-} from '../common/image-wrapper/default-image.const';
+
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
+import { CardPostModel } from '../card-post/card-post.model';
+import { defaultImage2, defaultImage3, defaultImage4, defaultImage5 } from '../image-wrapper/default-image.const';
 
 @Injectable()
 export class FeedService {

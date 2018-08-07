@@ -1,6 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { CardPostModel } from '../common/card-post/card-post.model';
-import { FeedService } from './feed.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-test',
@@ -8,20 +6,6 @@ import { FeedService } from './feed.service';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent {
-  @Input() title: string = 'News feed';
-  cards: CardPostModel[] = [];
 
-  constructor(private feedService: FeedService) {
-    this.getCards();
-  }
-
-  onScroll() {
-    this.getCards();
-  }
-
-  private getCards() {
-    this.feedService.getCards().subscribe(cards => {
-      this.cards = this.cards.concat(cards);
-    });
-  }
+  constructor() {}
 }
