@@ -3,7 +3,7 @@ import { CardPostModel } from './card-post.model';
 import { defaultImage } from '../image-wrapper/default-image.const';
 
 @Component({
-  selector: 'app-test',
+  selector: 'app-card-post',
   templateUrl: './card-post.component.html',
   styleUrls: ['./card-post.component.scss']
 })
@@ -20,6 +20,10 @@ export class CardPostComponent {
   };
 
   constructor() { }
+
+  onVote(up: boolean) {
+    up ? this.card.upVote++ : this.card.downVote++;
+  }
 
   onUpVote() {
     // NGXS upvote

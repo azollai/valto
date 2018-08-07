@@ -22,6 +22,8 @@ import { ImageWrapperModule } from '../image-wrapper/image-wrapper.module';
     ImageWrapperModule,
     MatCardModule,
   ],
-  providers: []
+  exports: [
+    CardPostComponent
+  ]
 })
 export class CardPostModule {}

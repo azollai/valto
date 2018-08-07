@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { CardPostModel } from './card-post.model';
-import { defaultImage } from '../common/image-wrapper/default-image.const';
+import { CardPostModel } from '../common/card-post/card-post.model';
+import { FeedService } from './feed.service';
 
 @Component({
   selector: 'app-test',
@@ -8,23 +8,20 @@ import { defaultImage } from '../common/image-wrapper/default-image.const';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent {
-  @Input() card: CardPostModel = {
-    description: 'It is a long established fact that a reader will be distracted by the readable content of a' +
-    ' page when looking at its layout.',
-    downVote: 5,
-    upVote: 104,
-    place: 'London, Gore Street 5',
-    tags: ['pothole'],
-    urls: [defaultImage]
-  };
+  @Input() title: string = 'News feed';
+  cards: CardPostModel[] = [];
 
-  constructor() { }
-
-  onUpVote() {
-    // NGXS upvote
+  constructor(private feedService: FeedService) {
+    this.getCards();
   }
 
-  onDownVote() {
-    // NGXS downvote
+  onScroll() {
+    this.getCards();
+  }
+
+  private getCards() {
+    this.feedService.getCards().subscribe(cards => {
+      this.cards = this.cards.concat(cards);
+    });
   }
 }

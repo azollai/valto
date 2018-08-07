@@ -1,33 +1,10 @@
-<div style="min-height:100%" fxLayout="column" fxLayoutAlign="start center">
-  <mat-card class="example-card" fxFlexOffset="1em">
-    <mat-card-header>
-      <mat-card-title><h2>#{{card.tags}}</h2></mat-card-title>
-    </mat-card-header>
-    <app-image-wrapper [isForUpload]="false" [urls]="card.urls"></app-image-wrapper>
-    <mat-card-content>
-      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1em">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-          <div>
-            <button mat-button>
-              <mat-icon style="color:green">arrow_upward</mat-icon>
-              {{card.upVote}}
-            </button>
-            <button mat-button>
-              <mat-icon style="color:red">arrow_downward</mat-icon>
-              {{card.downVote}}
-            </button>
-          </div>
-          <div fxLayout="row" fxLayoutAlign="center center">
-            <mat-icon>place</mat-icon>
-            {{card.place}}
-          </div>
-        </div>
-        <div fxLayout="column" fxLayoutAlign="center center">
-          <div style="width:90%;text-align: center">
-            {{card.description}}
-          </div>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+<div
+  class="search-results"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+  [scrollWindow]="false">
+  <h2 fxLayout="column" fxLayoutAlign="start center">{{title}}</h2>
+  <app-card-post *ngFor="let card of cards" [card]="card"></app-card-post>
 </div>
