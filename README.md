@@ -1,27 +1,38 @@
 # Valto
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+This is a presenter project of @azollai to demonstrate how he can develop an Angular project.
+Valto is an application that allows users to share their problems in their habitat and to see other's problems around them.
 
-## Development server
+## Demo code
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+You can see running the application by using stackblitz: ... Or by cloning and starting the master branch of the project.
 
-## Code scaffolding
+## Modules used by the project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- @angular/material - The project is built by Angular and uses the official Angular Material design
+- @angular/flex-layout - The layout is set by Angular's flex-layout
+- @angular/service-worker - It is also a Progressive Web Application (PWA), which is possible because of Angular's service worker
+- @ngxs/store - State management is used in the project, with NGXS
+- @types/googlemaps - The application is using GoogleMaps at the maps to find locations around the world and present them
+- angularfire2 - The server is hosted with Firebase. AngularFire2 is used for the communication.
+- ng-simple-slideshow - For the appearance of the imagegroups the app uses this package
+- ngx-image-cropper - For the image-cropping process the application is using this package. But because of the missing of support of the package I had to download the source-code and add some extra to it to make it work. (It was not possible to pass more images to the component while it was easy to implement)
+- ngx-infinite-scroll - For the scrolling 
 
-## Build
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+### Authentication
 
-## Running unit tests
+- You can register by clicking thhe "Join us" button and filling out the form there. Or you can make it easier by connecting your Facebook account.
+- If you already have an account, you can login
 
+### 
+
+## Special components
+
+- place-search
+
+## To be implemented
+
+- Cypres end-to-end tests
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
