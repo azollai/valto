@@ -1,13 +1,25 @@
 <mat-nav-list>
-  <a mat-list-item routerLink="/login" (click)="onToggleSidenav()">
+  <a *ngIf="!(isAuthenticated$ | async)" mat-list-item routerLink="/login" (click)="onToggleSidenav()">
     <mat-icon>face</mat-icon>
     <span class="nav-caption">Login</span>
   </a>
-  <a mat-list-item routerLink="/signup" (click)="onToggleSidenav()">
+  <a *ngIf="!(isAuthenticated$ | async)" mat-list-item routerLink="/signup" (click)="onToggleSidenav()">
     <mat-icon>eject</mat-icon>
     <span class="nav-caption">Register</span>
   </a>
-  <a mat-list-item routerLink="/welcome" (click)="onToggleSidenav();logout()">
+  <a *ngIf="(isAuthenticated$ | async)" mat-list-item routerLink="/create-post" (click)="onToggleSidenav()">
+    <mat-icon>eject</mat-icon>
+    <span class="nav-caption">Add post</span>
+  </a>
+  <a *ngIf="(isAuthenticated$ | async)" mat-list-item routerLink="/news-feed" (click)="onToggleSidenav()">
+    <mat-icon>eject</mat-icon>
+    <span class="nav-caption">News feed</span>
+  </a>
+  <a *ngIf="(isAuthenticated$ | async)" mat-list-item routerLink="/my-feed" (click)="onToggleSidenav()">
+    <mat-icon>eject</mat-icon>
+    <span class="nav-caption">My feed</span>
+  </a>
+  <a *ngIf="(isAuthenticated$ | async)" mat-list-item routerLink="/welcome" (click)="onToggleSidenav();logout()">
     <mat-icon>eject</mat-icon>
     <span class="nav-caption">Log out</span>
   </a>

@@ -4,7 +4,7 @@ import { LatLngLiteral } from '@agm/core';
 import { defaultImage } from '../image-wrapper/default-image.const';
 
 @Component({
-  selector: 'app-test',
+  selector: 'app-create-update-post',
   templateUrl: './create-update-post.component.html',
   styleUrls: ['./create-update-post.component.scss']
 })

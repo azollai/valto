@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'test', loadChildren: './test/test.module#TestModule', canLoad: [AuthGuard] },
   { path: 'news-feed', loadChildren: './news-feed/news-feed.module#NewsFeedModule', canLoad: [AuthGuard] },
   { path: 'my-feed', loadChildren: './my-feed/my-feed.module#MyFeedModule', canLoad: [AuthGuard] },
+  { path: 'create-post', loadChildren: './create-post/create-post.module#CreatePostModule', canLoad: [AuthGuard] },
   // { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
   // { path: 'welcome', loadChildren: 'app/welcome/welcome.module#WelcomeModule'},
 ];

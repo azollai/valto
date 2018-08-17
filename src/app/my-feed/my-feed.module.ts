@@ -11,9 +11,9 @@ import { MyFeedRoutingModule } from './my-feed-routing.module';
   ],
   imports: [
     CommonModule,
+
     FeedModule,
     MyFeedRoutingModule
-  ],
-  exports: [MyFeedComponent]
+  ]
 })
 export class MyFeedModule {}
