@@ -1,22 +1,17 @@
-.mat-form-field {
-  min-width: 240px;
-}
-
-.app-place-search {
-  width: 100%;
-  max-width: 600px;
-}
-
 .signup-form {
-  margin: 10px
-}
+  margin: 10px;
+  .app-place-search {
+    width: 100%;
+    max-width: 600px;
+  }
+  .gps-form-field {
+    min-width: 400px;
+  }
 
-.gps-form-field {
-  min-width: 400px;
-}
+  .facebook-login {
+    max-width: 500px;
+    background-color: #3b5998;
+    color: white;
+  }
 
-.facebook-login {
-  max-width: 500px;
-  background-color: #3b5998;
-  color: white;
 }

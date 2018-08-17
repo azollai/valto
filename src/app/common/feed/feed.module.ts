@@ -18,8 +18,8 @@ import { FeedFilterModule } from '../feed-filter/feed-filter.module';
     FormsModule,
     FlexLayoutModule,
     InfiniteScrollModule,
-    CardPostModule,
 
+    CardPostModule,
     FeedFilterModule
   ],
   providers: [FeedService],

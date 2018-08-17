@@ -1,21 +1,17 @@
-.example-card {
-  max-width: 900px;
-}
+.mat-card-wrapper {
+  min-height: 100%;
+  mat-card {
+    max-width: 900px;
+    .form-field-full-width {
+      width: 100%;
+    }
+    .app-place-search {
+      width: 100%;
+      max-width: 600px;
+    }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
-
-.example-full-width {
-  width: 100%;
-}
-
-.app-place-search {
-  width: 100%;
-  max-width: 600px;
-}
-
-.gps-form-field {
-  min-width: 400px;
+    .gps-form-field {
+      min-width: 400px;
+    }
+  }
 }

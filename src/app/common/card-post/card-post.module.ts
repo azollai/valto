@@ -14,13 +14,13 @@ import { ImageWrapperModule } from '../image-wrapper/image-wrapper.module';
   imports: [
     CommonModule,
     FlexLayoutModule,
+    AngularFireStorageModule,
 
     MatIconModule,
     MatButtonModule,
-
-    AngularFireStorageModule,
-    ImageWrapperModule,
     MatCardModule,
+
+    ImageWrapperModule,
   ],
   exports: [
     CardPostComponent

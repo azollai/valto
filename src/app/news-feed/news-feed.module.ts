@@ -11,6 +11,7 @@ import { NewsFeedRoutingModule } from './news-feed-routing.module';
   ],
   imports: [
     CommonModule,
+
     FeedModule,
     NewsFeedRoutingModule
   ]

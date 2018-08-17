@@ -24,12 +24,4 @@ export class CardPostComponent {
   onVote(up: boolean) {
     up ? this.card.upVote++ : this.card.downVote++;
   }
-
-  onUpVote() {
-    // NGXS upvote
-  }
-
-  onDownVote() {
-    // NGXS downvote
-  }
 }

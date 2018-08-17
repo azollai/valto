@@ -16,12 +16,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     FlexLayoutModule,
 
-    ChipsSelectModule,
-
     MatSelectModule,
     MatTooltipModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+
+    ChipsSelectModule
   ],
   exports: [FeedFilterComponent]
 })

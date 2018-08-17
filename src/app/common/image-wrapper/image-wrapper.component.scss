@@ -1,9 +1,19 @@
-.file-input {
-  visibility: hidden;
-}
-
-::ng-deep {
-  .arrow-container {
-    z-index: 0 !important;
+.image-wrapper {
+  ::ng-deep {
+    .arrow-container {
+      z-index: 0 !important;
+    }
+  }
+  .slide-show-wrapper {
+    width: 400px;
+    .add-images {
+      width: 140px;
+    }
+  }
+  .image-cropper {
+    max-height: 200px;
+  }
+  .file-input {
+    visibility: hidden;
   }
 }

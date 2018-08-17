@@ -1,12 +1,11 @@
 <div fxLayout="column" fxLayoutAlign="center center">
-
   <button mat-button (click)="filterOn=!filterOn">
     <mat-icon>menu</mat-icon>
     Filter
   </button>
   <div *ngIf="filterOn" fxLayout="column" fxLayoutAlign="center center">
-    <div style="width: 80%" class="filter-wrapper" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1em">
-      <app-chips-select style="min-width: 300px" [allChips]="allChips" [chips]="chips"
+    <div class="filter-wrapper" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1em">
+      <app-chips-select class="chips-select" [allChips]="allChips" [chips]="chips"
                         [chipControl]="chipControl" [validationOn]="false"></app-chips-select>
       <mat-select class="filter-select" placeholder="Region" [disabled]="true" matTooltip="Not implemented">
         <mat-option *ngFor="let region of regions" [value]="region">

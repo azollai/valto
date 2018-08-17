@@ -1,8 +1,9 @@
-.search-results {
-  height: 100%;
-  overflow: scroll;
-}
-
-.filter-select {
-  max-width: 200px;
+.filter-wrapper {
+  width: 80%;
+  .chips-select {
+    min-width: 300px
+  }
+  .filter-select {
+    max-width: 200px;
+  }
 }
