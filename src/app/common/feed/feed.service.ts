@@ -35,9 +35,7 @@ export class FeedService {
     }
   ];
 
-  constructor() {
-
-  }
+  constructor() {}
 
   getCards(): Observable<CardPostModel[]> {
     return of([...this.cards]);

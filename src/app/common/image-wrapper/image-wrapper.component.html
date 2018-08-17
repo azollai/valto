@@ -1,5 +1,5 @@
-<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-  <div style="width: 400px;" fxLayoutGap="10px">
+<div class="image-wrapper" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <div class="slide-show-wrapper" fxLayoutGap="10px">
     <slideshow
       #slideshow
       [height]="'400px'"
@@ -10,7 +10,7 @@
     </slideshow>
 
     <div *ngIf="isForUpload" fxLayout="row" fxLayoutAlign="end">
-      <button mat-raised-button style="width:140px" color="primary" (click)="inputField.click()">
+      <button mat-raised-button class="add-images" color="primary" (click)="inputField.click()">
         <mat-icon>add</mat-icon>
         Add Images
       </button>
@@ -29,7 +29,7 @@
   <input class="file-input" #inputField multiple type="file" (change)="fileChangeEvent($event)">
   <image-cropper
     *ngIf="isForUpload"
-    style="max-height: 200px"
+    class="image-cropper"
     [imageFileChanged]="imageChangedEvent"
     [cropper]="cropper"
     [maintainAspectRatio]="true"

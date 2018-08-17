@@ -1,5 +1,5 @@
-<div style="min-height:100%" fxLayout="column" fxLayoutAlign="start center">
-  <mat-card class="example-card" fxFlexOffset="1em">
+<div class="mat-card-wrapper" fxLayout="column" fxLayoutAlign="start center">
+  <mat-card fxFlexOffset="1em">
     <mat-card-header>
       <mat-card-title><h2>New post</h2></mat-card-title>
     </mat-card-header>
@@ -40,7 +40,7 @@
         </mat-step>
         <mat-step [stepControl]="detailsFormGroup">
           <ng-template matStepLabel>Statement description</ng-template>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="form-field-full-width">
             <textarea matInput #details maxlength="150" rows="3" required placeholder="Leírás"
                       [formControl]="detailsControl"></textarea>
             <mat-hint align="end">{{details.value.length}} / 150</mat-hint>

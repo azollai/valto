@@ -5,7 +5,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FeedService } from './feed.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { TestRoutingModule } from '../../test/test-routing.module';
 import { CardPostModule } from '../card-post/card-post.module';
 import { FeedFilterModule } from '../feed-filter/feed-filter.module';
 
@@ -17,11 +16,10 @@ import { FeedFilterModule } from '../feed-filter/feed-filter.module';
   imports: [
     CommonModule,
     FormsModule,
-    TestRoutingModule,
     FlexLayoutModule,
     InfiniteScrollModule,
-    CardPostModule,
 
+    CardPostModule,
     FeedFilterModule
   ],
   providers: [FeedService],

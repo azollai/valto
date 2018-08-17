@@ -1,3 +1,16 @@
-.example-card {
+mat-card {
   width: 20%;
+  min-width: 400px;
+  .arrow-upward {
+    color: green;
+  }
+
+  .arrow-downward {
+    color: red;
+  }
+
+  .card-description {
+    width: 90%;
+    text-align: center;
+  }
 }

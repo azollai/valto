@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import * as authActions from './auth/auth.state';
+import * as authActions from './auth/ngxs/auth.classes';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 

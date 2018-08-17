@@ -22,15 +22,14 @@ import { ImageCropperModule } from './image-cropper/image-cropper.module';
     CommonModule,
     FormsModule,
     FlexLayoutModule,
+    AngularFireStorageModule,
+    SlideshowModule,
 
     MatIconModule,
     MatButtonModule,
     MatButtonToggleModule,
 
-    AngularFireStorageModule,
-    // Image
-    ImageCropperModule,
-    SlideshowModule
+    ImageCropperModule
   ],
   exports: [
     ImageWrapperComponent

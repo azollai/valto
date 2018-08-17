@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Select, Store } from '@ngxs/store';
-import * as authActions from '../../auth/auth.state';
-import { AuthState } from '../../auth/auth.state';
+import * as authActions from '../../auth/ngxs/auth.classes';
+import { AuthState } from '../../auth/ngxs/auth.state';
 
 @Component({
   selector: 'app-header',
@@ -23,5 +23,4 @@ export class HeaderComponent {
   logout() {
     this.store.dispatch(new authActions.DeleteUser());
   }
-
 }
