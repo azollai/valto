@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule,
 
     ChipsSelectModule,
+
     MatSelectModule,
     MatTooltipModule,
     MatButtonModule,

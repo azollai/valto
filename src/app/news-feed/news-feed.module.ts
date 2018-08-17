@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TestComponent } from './test.component';
+import { NewsFeedComponent } from './news-feed.component';
 import { FeedModule } from '../common/feed/feed.module';
-import { TestRoutingModule } from './test-routing.module';
+import { NewsFeedRoutingModule } from './news-feed-routing.module';
 
 
 @NgModule({
   declarations: [
-    TestComponent,
+    NewsFeedComponent,
   ],
   imports: [
     CommonModule,
     FeedModule,
-    TestRoutingModule
+    NewsFeedRoutingModule
   ]
 })
-export class TestModule {}
+export class NewsFeedModule {}
