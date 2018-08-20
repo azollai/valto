@@ -3,7 +3,7 @@
 This is a presenter project of @azollai to demonstrate how he can develop an Angular project.
 Valto is an application that allows users to share their problems in their habitat and to see other's problems around them.
 
-## Demo code
+## Demo app
 
 You can see the application running here: https://valto-214b6.firebaseapp.com or by cloning and starting the master branch of the project.
 
