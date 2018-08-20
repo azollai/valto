@@ -18,21 +18,31 @@ You can see running the application by using stackblitz: ... Or by cloning and s
 - ng-simple-slideshow - For the appearance of the imagegroups the app uses this package
 - ngx-image-cropper - For the image-cropping process the application is using this package. But because of the missing of support of the package I had to download the source-code and add some extra to it to make it work. (It was not possible to pass more images to the component while it was easy to implement)
 - ngx-infinite-scroll - For the scrolling 
+- @nguniversal/express-engine - basic server-side rendering (to be continued...)
 
 ## Features
 
 ### Authentication
 
-- You can register by clicking thhe "Join us" button and filling out the form there. Or you can make it easier by connecting your Facebook account.
+- You can register by clicking thhe "Join us" button and filling out the form there, using your email address. Or you can make it easier by connecting your Facebook account.
 - If you already have an account, you can login
 
-### 
+### Feed browsing
 
-## Special components
+- You can see the posts that were published on the site by navigating to the "News Feed" page or you can see the one that were posted by you by navigating to the "My feed" page. 
+- Each post has picture(s) a short description, a tag (that describes the type of the post, e.g. bench) and a location. The posts are rated on the page, so the most rated ones can be seen first
+- You can also filter the posts on the feed pages by the tagnames, by the location or by the ratings
+- It is possible to create a post by clicking to the "Add Post" button. Here you can upload the content of a post which was just described.
 
-- place-search
+## Special components/modules
+
+- place-search - uses googlemaps library. By writing the name of an address to an input, it automatically advice the ones from googlemaps
+- image wrapper - uses ng-simple-lideshow, ngx-image-cropper and other material elements to make it possible to upload and edit images at image upload 
+- form-control-error-messages - by simply giving to it there validation-control errors, it displays them
+- feed-filter - this component is filtering the postst of a feed using and combining material control elements
+- chips-select - a simple angular material mat-chip-list that tightens it to make it fit for the feed's requirements
 
 ## To be implemented
 
 - Cypres end-to-end tests
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Finishing and testing serverside rendering 
