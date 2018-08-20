@@ -46,3 +46,4 @@ You can see running the application by using stackblitz: ... Or by cloning and s
 
 - Cypres end-to-end tests
 - Finishing and testing serverside rendering 
+- Connecting CircleCI for Continous Integration and deploying
