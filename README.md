@@ -5,7 +5,7 @@ Valto is an application that allows users to share their problems in their habit
 
 ## Demo code
 
-You can see running the application by using stackblitz: ... Or by cloning and starting the master branch of the project.
+You can see the application running here: https://valto-214b6.firebaseapp.com or by cloning and starting the master branch of the project.
 
 ## Modules used by the project
 
