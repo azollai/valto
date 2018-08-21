@@ -242,7 +242,6 @@ export class ImageCropperComponent implements OnChanges {
       this.cropper.y1 = this.cropper.y1 * displayedImage.offsetHeight / this.maxSize.height;
       this.cropper.y2 = this.cropper.y2 * displayedImage.offsetHeight / this.maxSize.height;
       console.log(this.cropper, 'penisz');
-      debugger;
     }
   }
 

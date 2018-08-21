@@ -15,7 +15,7 @@ export class ImageWrapperComponent {
   @Input() urls = [defaultImage];
   croppers = [];
   cropper: CropperPosition;
-  @Output() fileChosen = new EventEmitter<void>();
+  @Output() fileChosen = new EventEmitter<string[]>();
 
   selectedImageIndex = 0;
 
@@ -32,15 +32,18 @@ export class ImageWrapperComponent {
     if (file.type.split('/')[0] !== 'image') {
       console.error('unsupported file type :( ');
       return;
-    } else {
-      this.fileChosen.emit();
     }
+    // else {
+    //   // this.fileChosen.emit();
+    // }
   }
 
   imageCropped(image: { croppedImage: string, cropper: CropperPosition }) {
     console.log(image);
     const files: FileList = this.eventWithEveryFiles.target.files;
     this.urls[this.selectedImageIndex] = image.croppedImage;
+    this.fileChosen.emit(this.urls);
+    debugger;
     this.croppers[this.selectedImageIndex] = { ...image.cropper };
     const file = files.item(0);
     this.storage.ref(`/test/${file.name}`)

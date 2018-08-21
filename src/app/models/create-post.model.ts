@@ -1,9 +1,6 @@
 import { LatLngLiteral } from '@agm/core';
 
-export class CardPostModel {
-  id: string;
-  upVote: number;
-  downVote: number;
+export class CreatePostModel {
   place: LatLngLiteral;
   tags: string[];
   urls: string[];

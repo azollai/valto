@@ -7,5 +7,5 @@
   [scrollWindow]="false">
   <h2 fxLayout="column" fxLayoutAlign="start center">{{title}}</h2>
   <app-feed-filter [chips]="chips"></app-feed-filter>
-  <app-card-post *ngFor="let card of cards" [card]="card"></app-card-post>
+  <app-card-post *ngFor="let card of (posts$ | async)" [card]="card"></app-card-post>
 </div>

@@ -196,7 +196,6 @@ export class AuthState {
   }
 
   private signIn(user: firebase.User | null) {
-    debugger;
     this.store.dispatch(new SetUser(user));
     this.router.navigate(['test']);
   }

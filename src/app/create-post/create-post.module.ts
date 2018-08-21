@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { CreatePostComponent } from './create-post.component';
 import { CreatePostRoutingModule } from './create-post-routing.module';
 import { CreateUpdatePostModule } from '../common/create-update-post/create-update-post.module';
+import { PostState } from '../state/post.state';
+import { NgxsModule } from '@ngxs/store';
 
 
 @NgModule({
@@ -13,7 +15,7 @@ import { CreateUpdatePostModule } from '../common/create-update-post/create-upda
     CommonModule,
 
     CreateUpdatePostModule,
-    CreatePostRoutingModule
+    CreatePostRoutingModule,
   ],
   exports: [CreatePostComponent]
 })

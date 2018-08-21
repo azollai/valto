@@ -9,6 +9,9 @@ import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { AngularFireModule } from 'angularfire2';
+import { PostState } from './state/post.state';
+import { NgxsModule } from '@ngxs/store';
+import { FeedService } from './common/feed/feed.service';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,13 @@ import { AngularFireModule } from 'angularfire2';
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     CoreModule,
     AuthModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    NgxsModule.forRoot([PostState]),
 
     // temp
     // TestModule
   ],
-  providers: [],
+  providers: [FeedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
