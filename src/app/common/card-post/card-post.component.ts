@@ -10,11 +10,12 @@ import { defaultImage } from '../image-wrapper/default-image.const';
 export class CardPostComponent {
 
   @Input() card: CardPostModel = {
+    id: 'id',
     description: 'It is a long established fact that a reader will be distracted by the readable content of a' +
     ' page when looking at its layout.',
     downVote: 5,
     upVote: 104,
-    place: 'London, Gore Street 5',
+    place: { lat: 12, lng: 12 },
     tags: ['pothole'],
     urls: [defaultImage]
   };

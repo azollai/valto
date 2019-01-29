@@ -22,7 +22,7 @@ import { FeedFilterModule } from '../feed-filter/feed-filter.module';
     CardPostModule,
     FeedFilterModule
   ],
-  providers: [FeedService],
+  providers: [],
   exports: [FeedComponent]
 })
 export class FeedModule {}

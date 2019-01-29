@@ -30,7 +30,6 @@ export class NoAuthGuard implements CanActivate, CanLoad {
       take(1),
       map((authState) => !authState),
       tap(notAuthenticated => {
-        debugger;
         if (!notAuthenticated) {
           this.router.navigate(['/test']);
         }

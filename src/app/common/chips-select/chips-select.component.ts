@@ -63,9 +63,9 @@ export class ChipsSelectComponent implements OnInit {
     if (this.allChips.filter(v => v === event.option.viewValue).length !== 0 &&
       this.chips.filter(v => v === event.option.viewValue).length === 0
     ) {
-      this.chips.push(event.option.viewValue);
+      this.chips.push(event.option.value);
       this.chipInput.nativeElement.value = '';
-      this.chipControl.setValue(null);
+      this.chipControl.setValue(event.option.value);
     }
   }
 

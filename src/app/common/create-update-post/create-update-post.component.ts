@@ -2,6 +2,8 @@ import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LatLngLiteral } from '@agm/core';
 import { defaultImage } from '../image-wrapper/default-image.const';
+import { Store } from '@ngxs/store';
+import { CreatePost } from '../../state/post.classes';
 
 @Component({
   selector: 'app-create-update-post',
@@ -28,7 +30,7 @@ export class CreateUpdatePostComponent implements OnInit {
 
   imageErrorShown = false;
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit() {
     this.gpsEmitter = new EventEmitter<any>();
@@ -40,13 +42,22 @@ export class CreateUpdatePostComponent implements OnInit {
     this.latLngLiteral = event;
   }
 
-  fileChosen() {
+  fileChosen(event: string[]) {
+    debugger;
     this.imageControl.patchValue({ image: 'file chosen' });
+    this.urls = event;
   }
 
   onShare() {
     this.submitted = true;
-    // Submit NGXS
+    const card = new CreatePost({
+      place: this.latLngLiteral,
+      description: this.detailsControl.value,
+      tags: [this.chipControl.value],
+      urls: this.urls
+    });
+    console.log(this.urls);
+    this.store.dispatch(card);
   }
 
   private initForms() {
