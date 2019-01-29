@@ -15,6 +15,7 @@ import {} from 'googlemaps';
 export class PlaceSearchComponent implements OnInit {
 
   @Input() latitude: number;
+
   @Input() longitude: number;
   @Input() scrollWheel: boolean;
   @Input() zoom: number;
