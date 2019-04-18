@@ -2,9 +2,9 @@ import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import * as authActions from '../../ngxs/auth.classes';
-import { Observable } from 'rxjs/Observable';
 import { LatLngLiteral } from '@agm/core';
 import { PasswordValidators } from 'ngx-validators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-finish-signup',

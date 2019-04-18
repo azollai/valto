@@ -1,9 +1,17 @@
 import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { LatLngLiteral, MapsAPILoader } from '@agm/core';
-import PlaceResult = google.maps.places.PlaceResult;
+// import PlaceResult = google.maps.places.PlaceResult;
+// import PlaceResult = google.maps.places.PlaceResult;
+import { google } from '@agm/core/services/google-maps-types';
+// import PlaceResult = google.maps.places.PlaceResult;
+// import { google } from '@agm/core/services/google-maps-types';
+// declare namespace google.maps.places {
+//   export interface PlaceResult { geometry; }
+// }
+// import { google } from '@agm/core/services/google-maps-types';
 
-import {} from 'googlemaps';
+// import 'googlemaps';
 
 // import{} from 'googlemaps'
 
@@ -45,13 +53,13 @@ export class PlaceSearchComponent implements OnInit {
     }
   }
 
-  locationNameCallback(results: PlaceResult[]) {
+  locationNameCallback(results: any[]) {
     if (results.length > 0) {
       this.searchElementRef.nativeElement.value = results[0].formatted_address;
     }
   }
 
-  locationCoordinatesCallback(results: PlaceResult[], status) {
+  locationCoordinatesCallback(results: any[], status) {
     if (results.length > 0) {
       this.latitude = results[0].geometry.location.lat();
       this.longitude = results[0].geometry.location.lng();
@@ -81,7 +89,7 @@ export class PlaceSearchComponent implements OnInit {
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           // get the place result
-          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          const place: any = autocomplete.getPlace();
           if (place.geometry) {
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();

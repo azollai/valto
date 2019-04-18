@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CardPostModel } from '../card-post/card-post.model';
 import { Select, Store } from '@ngxs/store';
 import { PostState } from '../../state/post.state';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as postActions from '../../state/post.classes';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import * as authActions from '../ngxs/auth.classes';

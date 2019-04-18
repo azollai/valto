@@ -1,7 +1,5 @@
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import { fromPromise } from 'rxjs/observable/fromPromise';
 import { SendFinishUserMetaModel, SendUserMetaModel, StartUserMetaModel } from '../models/user-meta';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -9,12 +7,16 @@ import * as firebase from 'firebase';
 import {
   DeleteUser,
   FinishSocialSignup,
-  SetUser, StartEmailLogin,
+  SetUser,
+  StartEmailLogin,
   StartEmailSignup,
-  StartLoading, StartLogout, StartSocialLogin,
+  StartLoading,
+  StartLogout,
+  StartSocialLogin,
   StartSocialSignup,
   StopLoading
 } from './auth.classes';
+import { fromPromise } from 'rxjs/internal-compatibility';
 
 
 export interface AuthStateModel {
@@ -87,7 +89,7 @@ export class AuthState {
   startEmailSignup({ dispatch }: StateContext<AuthStateModel>, { payload }: StartEmailSignup) {
     dispatch(new StartLoading());
     return fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(payload.email, payload.password))
-      .subscribe((user: firebase.User | null) => {
+      .subscribe((user: any) => {
         console.log('mail signup', user);
         const userMeta: SendUserMetaModel = {
           birthDate: payload.birthDate.getTime(),
@@ -117,8 +119,8 @@ export class AuthState {
     const provider = new firebase.auth.FacebookAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then(result => {
       const userMeta: StartUserMetaModel = {
-        firstName: result.additionalUserInfo.profile.first_name,
-        lastName: result.additionalUserInfo.profile.last_name
+        firstName: result.additionalUserInfo.profile['first_name'],
+        lastName: result.additionalUserInfo.profile['last_name']
       };
       this.db.collection('users').doc(result.user.uid).set(userMeta)
           .then(() => {
@@ -169,7 +171,7 @@ export class AuthState {
   startEmailLogin({ dispatch }: StateContext<AuthStateModel>, { payload }: StartEmailLogin) {
     dispatch(new StartLoading());
     this.afAuth.auth.signInWithEmailAndPassword(payload.email, payload.password)
-        .then((user: firebase.User | null) => {
+        .then((user: any) => {
           dispatch([
             new StopLoading(),
             new SetUser(user)

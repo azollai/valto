@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
 import * as authActions from '../ngxs/auth.classes';
 import { PasswordValidators } from 'ngx-validators';
