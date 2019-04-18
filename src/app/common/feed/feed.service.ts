@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { CardPostModel } from '../card-post/card-post.model';
 import { defaultImage2, defaultImage3, defaultImage4, defaultImage5 } from '../image-wrapper/default-image.const';
 import { CreatePostModel } from '../../models/create-post.model';
 import { UpdatePostModel } from '../../models/update-post.model';
-import { of } from 'rxjs/observable/of';
-import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class FeedService {
@@ -47,7 +45,6 @@ export class FeedService {
   }
 
   addCard(card: CreatePostModel): Observable<void> {
-    debugger;
     this.cards.push({
       upVote: 0,
       tags: card.tags,
@@ -57,7 +54,7 @@ export class FeedService {
       urls: card.urls,
       id: 'uj'
     });
-    return new EmptyObservable();
+    return of();
   }
 
   updateCard(card: UpdatePostModel): Observable<void> {
@@ -74,7 +71,7 @@ export class FeedService {
         };
       }
     });
-    return new EmptyObservable();
+    return of();
   }
 
 }

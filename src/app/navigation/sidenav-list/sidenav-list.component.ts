@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import * as authActions from '../../auth/ngxs/auth.classes';
 import { AuthState } from '../../auth/ngxs/auth.state';
 import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sidenav-list',

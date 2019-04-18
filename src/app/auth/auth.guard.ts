@@ -1,12 +1,10 @@
 import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import 'rxjs/add/operator/do';
 import { AuthState } from './ngxs/auth.state';
-import 'rxjs/add/operator/map';
-import { map, take, tap } from 'rxjs/operators';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { map, take, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanLoad {

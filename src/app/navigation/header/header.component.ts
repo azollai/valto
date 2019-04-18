@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
 import * as authActions from '../../auth/ngxs/auth.classes';
 import { AuthState } from '../../auth/ngxs/auth.state';
