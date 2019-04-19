@@ -1,0 +1,12 @@
+<section *ngIf="mapVisible">
+  <agm-map [gestureHandling]="'cooperative'"
+           [latitude]="latitude"
+           [longitude]="longitude"
+           [scrollwheel]="scrollWheel"
+           [zoom]="zoom"
+           (centerChange)="centerChange.emit($event)">
+    <agm-marker [latitude]="latitude"
+                [longitude]="longitude"></agm-marker>
+  </agm-map>
+</section>
+<div #map></div>

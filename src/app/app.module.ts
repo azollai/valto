@@ -6,16 +6,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
-import { CoreModule } from './core/core.module';
-import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './module/core/core.module';
+import { AuthModule } from './module/auth/auth.module';
 import { AngularFireModule } from 'angularfire2';
 import { PostState } from './state/post.state';
 import { NgxsModule } from '@ngxs/store';
-import { FeedService } from './common/feed/feed.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'valto' }),
@@ -23,12 +22,12 @@ import { FeedService } from './common/feed/feed.service';
     CoreModule,
     AuthModule,
     AngularFireModule.initializeApp(environment.firebase),
+    // TODO:are you sure, that PostState should be here?
     NgxsModule.forRoot([PostState]),
 
     // temp
     // TestModule
   ],
-  providers: [FeedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -6,6 +6,7 @@ mat-sidenav {
   width: 250px;
 }
 
+// TODO: there are better flows to do it
 .sidenav-content-margin {
   @media screen and (max-width: 599px) {
     padding-top: 56px;

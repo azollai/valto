@@ -1,0 +1,53 @@
+<div fxLayout="column"
+     fxLayoutAlign="center center">
+  <button (click)="filterOn=!filterOn"
+          mat-button>
+    <mat-icon>menu</mat-icon>
+    Filter
+  </button>
+  <div *ngIf="filterOn"
+       fxLayout="column"
+       fxLayoutAlign="center center">
+    <div class="filter-wrapper"
+         fxLayout="row"
+         fxLayoutAlign="center center"
+         fxLayoutGap="1em">
+      <app-chips-select [allChips]="allChips"
+                        [chips]="chips"
+                        [chipControl]="chipControl"
+                        [validationOn]="false"
+                        class="chips-select"></app-chips-select>
+      <mat-select [disabled]="true"
+                  class="filter-select"
+                  placeholder="Region"
+                  matTooltip="Not implemented">
+        <mat-option *ngFor="let region of regions"
+                    [value]="region">
+          {{region}}
+        </mat-option>
+      </mat-select>
+      <mat-select [(ngModel)]="orderMethod"
+                  class="filter-select"
+                  placeholder="Order by"
+                  matTooltip="Not implemented">
+        <mat-option *ngFor="let orderMethod of orderMethods"
+                    [value]="orderMethod">
+          {{orderMethod}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div fxLayout="row"
+         fxLayoutAlign="center center"
+         fxLayoutGap="1em">
+      <button (click)="filter()"
+              mat-raised-button
+              color="primary">
+        Filter
+      </button>
+      <button mat-raised-button
+              (click)="reset()">
+        Reset
+      </button>
+    </div>
+  </div>
+</div>

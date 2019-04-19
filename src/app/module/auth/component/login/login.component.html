@@ -1,0 +1,76 @@
+<section class="login-form">
+  <form [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        fxLayout="column"
+        fxLayoutAlign="center none"
+        fxLayoutGap="10px">
+    <div fxLayout="column"
+         fxLayoutAlign="start center"
+         fxLayoutGap="30px">
+      <button (click)="socialSignIn()"
+              mat-button
+              class="facebook-login"
+              type="button">
+        Login with your Facebook account
+      </button>
+    </div>
+    <div fxLayout="row"
+         fxLayout.lt-md="column"
+         fxLayoutAlign="center center"
+         fxLayoutGap="10px">
+      <div fxLayout="column"
+           fxLayoutAlign="center center"
+           fxLayoutGap="10px">
+        <div>
+          <!--E-mail-->
+          <mat-form-field>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              autocomplete="email"
+              placeholder="E-mail"
+              name="email"
+              required>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="emailControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <!--Password-->
+          <mat-form-field>
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              autocomplete="new-password"
+              placeholder="Password"
+              name="password"
+              required>
+            <mat-error>
+              <app-form-control-error-messages
+                [errorKeys]="passwordControl?.errors"></app-form-control-error-messages>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="column"
+         fxLayoutAlign="start center"
+         fxLayoutGap="10px">
+
+      <button *ngIf="!(isLoading$ | async)"
+              type="submit"
+              mat-raised-button
+              color="primary">
+        Login
+      </button>
+      <!--<ng-template #matSpinner>-->
+      <!--<mat-spinner></mat-spinner>-->
+      <!--</ng-template>-->
+    </div>
+  </form>
+</section>

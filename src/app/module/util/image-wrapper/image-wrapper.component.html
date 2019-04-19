@@ -1,0 +1,54 @@
+<div class="image-wrapper"
+     fxLayout="column"
+     fxLayoutAlign="center center"
+     fxLayoutGap="10px">
+  <div class="slide-show-wrapper"
+       fxLayoutGap="10px">
+    <slideshow [height]="'400px'"
+               [autoPlay]="false"
+               [showDots]="urls.length > 1"
+               [showArrows]="urls.length > 1"
+               [imageUrls]="urls"
+               #slideshow>
+    </slideshow>
+
+    <div *ngIf="isForUpload"
+         fxLayout="row"
+         fxLayoutAlign="end">
+      <button (click)="inputField.click()"
+              mat-raised-button
+              class="add-images"
+              color="primary">
+        <mat-icon>add</mat-icon>
+        Add Images
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isForUpload && croppers.length > 0">
+    <p>Select an image to crop</p>
+    <mat-button-toggle-group name="fontStyle"
+                             aria-label="Font Style"
+                             value="0">
+      <mat-button-toggle *ngFor="let url of urls;let i=index"
+                         (click)="slideshow.goToSlide(i);selectImage(i)"
+                         value="{{i}}">
+        {{i + 1}}. Image
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <input class="file-input"
+         #inputField
+         multiple
+         type="file"
+         (change)="fileChangeEvent($event)">
+  <image-cropper *ngIf="isForUpload"
+                 [imageFileChanged]="imageChangedEvent"
+                 [cropper]="cropper"
+                 [maintainAspectRatio]="true"
+                 [aspectRatio]="1/1"
+                 [resizeToWidth]="1024"
+                 (imageCropped)="imageCropped($event)"
+                 class="image-cropper"
+                 format="png"></image-cropper>
+</div>
