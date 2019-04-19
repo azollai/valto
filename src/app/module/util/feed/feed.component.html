@@ -1,0 +1,14 @@
+<div
+  class="search-results"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+  [scrollWindow]="false">
+
+  <h2 fxLayout="column"
+      fxLayoutAlign="start center">{{title}}</h2>
+  <app-feed-filter [chips]="chips"></app-feed-filter>
+  <app-card-post *ngFor="let card of (posts$ | async)"
+                 [card]="card"></app-card-post>
+</div>

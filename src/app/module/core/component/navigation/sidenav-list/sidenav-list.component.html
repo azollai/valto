@@ -1,0 +1,50 @@
+<mat-nav-list>
+  <!--Login-->
+  <a *ngIf="!(isAuthenticated$ | async)"
+     (click)="onToggleSidenav()"
+     mat-list-item
+     routerLink="/login">
+    <mat-icon>face</mat-icon>
+    <span class="nav-caption">Login</span>
+  </a>
+  <!--Register-->
+  <a *ngIf="!(isAuthenticated$ | async)"
+     (click)="onToggleSidenav()"
+     mat-list-item
+     routerLink="/signup" >
+    <mat-icon>person_add</mat-icon>
+    <span class="nav-caption">Register</span>
+  </a>
+  <!--Add post-->
+  <a *ngIf="(isAuthenticated$ | async)"
+     (click)="onToggleSidenav()"
+     mat-list-item
+     routerLink="/create-post">
+    <mat-icon>note_add</mat-icon>
+    <span class="nav-caption">Add post</span>
+  </a>
+  <!--News feed-->
+  <a *ngIf="(isAuthenticated$ | async)"
+     (click)="onToggleSidenav()"
+     mat-list-item
+     routerLink="/news-feed">
+    <mat-icon>fiber_new</mat-icon>
+    <span class="nav-caption">News feed</span>
+  </a>
+  <!--My feed-->
+  <a *ngIf="(isAuthenticated$ | async)"
+     (click)="onToggleSidenav()"
+     mat-list-item
+     routerLink="/my-feed">
+    <mat-icon>person_outline</mat-icon>
+    <span class="nav-caption">My feed</span>
+  </a>
+  <!--Log out-->
+  <a *ngIf="(isAuthenticated$ | async)"
+     (click)="onToggleSidenav();logout()"
+     mat-list-item
+     routerLink="/welcome">
+    <mat-icon>eject</mat-icon>
+    <span class="nav-caption">Log out</span>
+  </a>
+</mat-nav-list>

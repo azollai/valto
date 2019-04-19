@@ -1,0 +1,44 @@
+<div fxLayout="column"
+     fxLayoutAlign="start center">
+  <mat-card fxFlexOffset="1em">
+
+    <mat-card-header>
+      <mat-card-title><h2>#{{card.tags}}</h2></mat-card-title>
+    </mat-card-header>
+
+    <app-image-wrapper [isForUpload]="false" [urls]="card.urls"></app-image-wrapper>
+
+    <mat-card-content>
+      <div fxLayout="column"
+           fxLayoutAlign="center center"
+           fxLayoutGap="1em">
+        <div fxLayout="row"
+             fxLayoutAlign="space-between center">
+          <div>
+            <button mat-button
+                    (click)="onVote(true)">
+              <mat-icon class="arrow-upward">arrow_upward</mat-icon>
+              {{card.upVote}}
+            </button>
+            <button mat-button
+                    (click)="onVote(false)">
+              <mat-icon class="arrow-downward">arrow_downward</mat-icon>
+              {{card.downVote}}
+            </button>
+          </div>
+          <div fxLayout="row"
+               fxLayoutAlign="center center">
+            <mat-icon>place</mat-icon>
+            {{card.place}}
+          </div>
+        </div>
+        <div fxLayout="column"
+             fxLayoutAlign="center center">
+          <div class="card-description">
+            {{card.description}}
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

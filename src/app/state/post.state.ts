@@ -1,10 +1,10 @@
-import { CardPostModel } from '../common/card-post/card-post.model';
-import { TagModel } from '../models/tag.model';
+import { CardPostModel } from '../module/util/card-post/card-post.model';
+import { TagModel } from '../model/tag.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Router } from '@angular/router';
-import { CreatePost, FetchPosts, StartLoading, StopLoading, UpdatePost } from './post.classes';
-import { FeedService } from '../common/feed/feed.service';
+import { CreatePost, FetchPosts, StartLoading, StopLoading, UpdatePost } from './post.action';
+import { FeedService } from '../module/util/feed/feed.service';
 
 export interface PostStateModel {
   isLoading: boolean;
