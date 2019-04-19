@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { LatLngLiteral, MapsAPILoader } from '@agm/core';
 // import PlaceResult = google.maps.places.PlaceResult;
 // import PlaceResult = google.maps.places.PlaceResult;
-import { google } from '@agm/core/services/google-maps-types';
+// import { google } from '@agm/core/services/google-maps-types';
 // import PlaceResult = google.maps.places.PlaceResult;
 // import { google } from '@agm/core/services/google-maps-types';
 // declare namespace google.maps.places {
@@ -11,7 +11,8 @@ import { google } from '@agm/core/services/google-maps-types';
 // }
 // import { google } from '@agm/core/services/google-maps-types';
 
-// import 'googlemaps';
+// @ts-ignore
+import {} from 'googlemaps';
 
 // import{} from 'googlemaps'
 
